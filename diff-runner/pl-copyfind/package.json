@@ -1,0 +1,54 @@
+{
+  "_from": "pl-copyfind",
+  "_id": "pl-copyfind@0.10.1",
+  "_inBundle": false,
+  "_integrity": "sha1-SsFV8mauffpbItnzxv7dqohTe8I=",
+  "_location": "/pl-copyfind",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "pl-copyfind",
+    "name": "pl-copyfind",
+    "escapedName": "pl-copyfind",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/pl-copyfind/-/pl-copyfind-0.10.1.tgz",
+  "_shasum": "4ac155f266ae7dfa5b22d9f3c6feddaa88537bc2",
+  "_spec": "pl-copyfind",
+  "_where": "/Users/ryan_bradford/Desktop/matt-repo",
+  "author": {
+    "name": "Craig Monro"
+  },
+  "bugs": {
+    "url": "https://github.com/cmroanirgo/pl-copyfind/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {},
+  "deprecated": false,
+  "description": "ideas are based on those found at plagiarism.bloomfieldmedia.com's CopyFind/WCopyFind",
+  "directories": {
+    "lib": "./lib"
+  },
+  "homepage": "https://github.com/cmroanirgo/pl-copyfind#readme",
+  "license": "GPL",
+  "main": "index.js",
+  "name": "pl-copyfind",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmroanirgo/pl-copyfind.git"
+  },
+  "scripts": {
+    "build": "npm run build:release -s",
+    "build:base": "browserify -r ./package.json:metadata -r underscore -r ./index.js:pl-copyfind -r ./demos/demo.js:demo",
+    "build:debug": "echo building debug... && npm run build:base -s > demos/node-bundle.js",
+    "build:release": "echo building release... && npm run build:base -s | uglifyjs --c --m --preamble \"/**\n * Copyright (c) 2016 Craig Monro (kodespace.com)\n * No part of this file may be copied or retransmitted without adhering to the GPL license.\n * This copyright notice may not be removed, without express permission of the copyright holder.\n * https://github.com/cmroanirgo/pl-copyfind/blob/master/LICENSE.md\n */\"> demos/node-bundle.js"
+  },
+  "version": "0.10.1"
+}

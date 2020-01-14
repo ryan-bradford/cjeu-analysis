@@ -1,0 +1,17 @@
+{
+  "name": "matt-repo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^2.3.1",
+    "node-xlsx": "^0.15.0",
+    "pl-copyfind": "^0.10.1",
+    "read-excel-file": "^4.0.2"
+  }
+}

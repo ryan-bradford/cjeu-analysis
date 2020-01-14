@@ -1,0 +1,27 @@
+{
+  "name": "matt-code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "web-scrape.ts",
+  "scripts": {
+    "start": "ts-node web-scrape.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Bradford",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^8.6.1",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "@types/cheerio": "^0.22.15",
+    "@types/jsdom": "^12.2.4",
+    "@types/request-promise-native": "^1.0.17",
+    "cheerio": "^1.0.0-rc.3",
+    "csv-writer": "^1.5.0",
+    "export-to-csv": "^0.2.1",
+    "jsdom": "^15.2.1",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8"
+  }
+}
