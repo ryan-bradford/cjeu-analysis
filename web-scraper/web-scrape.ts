@@ -1,4 +1,7 @@
 import * as request from "request-promise-native";
+import * as XLSX from 'xlsx';
+import * as XLSXStyle from 'xlsx-style';
+import * as fs from 'fs';
 import { JSDOM } from 'jsdom';
 
 
@@ -18,32 +21,67 @@ run();
 function buildAndWriteCSV(clexToAG, clexToJustice, year: number) {
     let data = [];
     clexToAG.forEach((value, key) => {
-        const ag = clexToAG.get(key);
-        const ecj = clexToJustice.get(key);
+        const ag = clexToAG.get(key) as string;
+        const ecj = clexToJustice.get(key) as string;
         if (ag === undefined || ecj === undefined || ag.substring(0, 4) === 'null' || ecj.substring(0, 4) === 'null') {
             return;
         }
-        data.push({
-            clex: key,
-            ag: ag,
-            ecj: ecj,
-        })
+        data.push([
+            key,
+            "",
+            "",
+            ag.replace(/(\r\n|\n|\r)/gm, ""),
+            ecj.replace(/(\r\n|\n|\r)/gm, ""),
+        ])
     })
 
     console.log(data.length + ' records written to disk for the year of ' + year);
 
-    const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-    const csvWriter = createCsvWriter({
-        path: year + '.csv',
-        header: [
-            { id: 'clex', title: 'CLEX' },
-            { id: 'ag', title: 'AD GENERAL' },
-            { id: 'ecj', title: 'ECJ' }
-        ]
-    });
+    const wb = XLSX.utils.book_new();
 
+    wb.Props = {
+        Title: "Webscraper Output",
+        Subject: "CJEU",
+        Author: "Ryan Bradford",
+        CreatedDate: new Date()
+    };
 
-    return csvWriter.writeRecords(data);
+    wb.SheetNames.push("Data Sheet");
+    var ws = XLSX.utils.aoa_to_sheet(data);
+    ws["!cols"] = [
+        {
+            wpx: 300,
+        },
+        {
+            wpx: 300,
+        },
+        {
+            wpx: 300,
+        },
+    ]
+
+    ws["!rows"] = []
+
+    for (let row = 1; row <= data.length; row++) {
+        ws["!rows"].push({
+            hpx: 200,
+        });
+    }
+    wb.Sheets["Data Sheet"] = ws;
+
+    for (let row = 1; row <= data.length; row++) {
+        for (let col of ['A', 'B', 'C']) {
+            ws[`${col}${row}`].s = {
+                alignment: {
+                    wrapText: true, // any truthy value here,
+                    vertical: 'top',
+                },
+            }
+        }
+    }
+    XLSXStyle.writeFile(wb, `${year}.xlsx`);
+
+    return;
 }
 
 // console.log(generateSearchURL(1, ORGS_TO_PULL[1], 2019));

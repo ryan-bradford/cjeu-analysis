@@ -17,11 +17,14 @@
     "@types/cheerio": "^0.22.15",
     "@types/jsdom": "^12.2.4",
     "@types/request-promise-native": "^1.0.17",
+    "@types/xlsx": "0.0.36",
     "cheerio": "^1.0.0-rc.3",
     "csv-writer": "^1.5.0",
     "export-to-csv": "^0.2.1",
     "jsdom": "^15.2.1",
     "request": "^2.88.0",
-    "request-promise-native": "^1.0.8"
+    "request-promise-native": "^1.0.8",
+    "xlsx": "^0.15.4",
+    "xlsx-style": "^0.8.13"
   }
 }
